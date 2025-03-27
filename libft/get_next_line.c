@@ -6,7 +6,7 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:43:30 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/03/23 12:10:28 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/03/26 14:13:48 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 	// {
 	// 	free(call);
 	// 	return (NULL);
+	// }
 // instead, do like in the function., 
 // only free call if call is not null
 // to avoid memory leak/undefined behaviour
@@ -39,14 +40,6 @@ char	*get_next_line(int fd)
 	if (!call)
 		return (NULL);
 	line = ft_extract(call);
-	// if (!line)
-	// {
-	// 	if (call)
-	// 	{
-	// 		free (call);
-	// 		return (NULL);
-	// 	}
-	// }
 	call = ft_storage(call);
 	return (line);
 }

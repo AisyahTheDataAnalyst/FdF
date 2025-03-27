@@ -6,31 +6,28 @@
 #    By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/06 14:26:57 by aimokhta          #+#    #+#              #
-#    Updated: 2025/03/22 21:15:06 by aimokhta         ###   ########.fr        #
+#    Updated: 2025/03/27 12:15:42 by aimokhta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc #-g3 -O0 -fsanitize=address -fsanitize-recover=leak
-CFLAGS = -Wall -Wextra -Werror -Iinclude -Ilibft -Ift_printf -Imlx-linux #-g3
+CC = cc #-g3 -O3 -O0 -fsanitize=address -fsanitize-recover=leak
+CFLAGS = -Wall -Wextra -Werror  -Iinclude -Ilibft -Ift_printf -Iminilibx-linux #-g3
 
 SRC_DIR = srcs
 BUILD_DIR = build
 LIBFT_DIR = libft
 FT_PRINTF_DIR = ft_printf
 INCLUDE_DIR = include
-MLX_DIR = mlx-linux
+MLX_DIR = minilibx-linux
 
 LIBFT = $(LIBFT_DIR)/libft.a
 FT_PRINTF = $(FT_PRINTF_DIR)/ft_printf.a
 MLX = $(MLX_DIR)/libmlx_Linux.a
 
-FDF_SRCS = event.c \
-			main.c \
-			colors_shape.c \
-			color.c \
-			hooks.c \
-			loops.c \
-			parsing.c 
+FDF_SRCS = main.c \
+			1.1_parsing.c \
+			1.2_parsing_helper.c \
+			1.3_parsing_freeing.c 
 
 FDF_OBJS = $(FDF_SRCS:.c=.o)
 FDF_OBJ_PATHS = $(FDF_OBJS:%=$(BUILD_DIR)/%)
@@ -86,7 +83,7 @@ $(FT_PRINTF):
 	@make -C $(FT_PRINTF_DIR)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
-	$(CC) $(CFLAGS) -I mlx_linux -O3 -c $< -o $@
+	$(CC) $(CFLAGS) -I minilibx_linux -O3 -c $< -o $@
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)

@@ -6,15 +6,19 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:17:13 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/03/12 15:50:06 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/03/27 11:55:35 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+// 1024 bytes = 1KB
+// 1024 bytes x 64KB = 65536 bytes
+// 65536 bytes = 64KB
+// 131072 bytes = 128KB
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4
+#  define BUFFER_SIZE 131072
 # endif
 
 // size_t, malloc&free&NULL, write&read, SIZE_MAX, ssize_t
