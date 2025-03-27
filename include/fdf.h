@@ -6,17 +6,18 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:07:41 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/03/27 12:17:24 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:06:08 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <mlx.h>
-# include <mlx_int.h>
-# include "libft.h"
-# include "ft_printf.h"
+# include "../minilibx-linux/mlx.h"
+// # include <mlx.h>
+// # include <mlx_int.h>
+# include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
 # include <fcntl.h> // open
 # include <unistd.h> // close
 // # include <stdlib.h> //donno

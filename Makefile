@@ -1,106 +1,63 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/03/06 14:26:57 by aimokhta          #+#    #+#              #
-#    Updated: 2025/03/27 13:42:58 by aimokhta         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-CC = cc #-g3 -O3 -O0 -fsanitize=address -fsanitize-recover=leak
-CFLAGS = -Wall -Wextra -Werror  -Iinclude -Ilibft -Ift_printf -Iminilibx-linux #-g3
-
-SRC_DIR = srcs
-BUILD_DIR = build
-LIBFT_DIR = libft
-FT_PRINTF_DIR = ft_printf
-INCLUDE_DIR = include
-MLX_DIR = minilibx-linux
-
-LIBFT = $(LIBFT_DIR)/libft.a
-FT_PRINTF = $(FT_PRINTF_DIR)/ft_printf.a
-MLX = $(MLX_DIR)/libmlx_Linux.a
-
-FDF_SRCS = main.c \
-			1.1_parsing.c \
-			1.2_parsing_helper.c \
-			1.3_parsing_freeing.c \
-			mlx_functions.c
-
-FDF_OBJS = $(FDF_SRCS:.c=.o)
-FDF_OBJ_PATHS = $(FDF_OBJS:%=$(BUILD_DIR)/%)
-
-# BONUS_SRCS = BONUS_bonus.c
-
-# BONUS_OBJS = $(BONUS_SRCS:.c=.o)
-# BONUS_OBJ_PATHS = $(BONUS_OBJS:%=$(BUILD_DIR)/%)
-				
-# BONUS_EXTRA_OBJS = a_to_b.o \
-# 					b_to_a.o \
-# 					error_handling.o \
-# 					executions.o \
-# 					freeing_exit.o \
-# 					input_into_cdllist.o \
-# 					inputting.o \
-# 					opr_push.o \
-# 					opr_reverse_rotate.o \
-# 					opr_rotate.o \
-# 					opr_swap.o \
-# 					sort_small.o \
-# 					steps_calc.o \
-# 					turk_algo.o \
-# 					FDF.o \
-# 					utils.o 
-
-# BONUS_EXTRA_OBJ_PATHS = $(BONUS_EXTRA_OBJS:%=$(BUILD_DIR)/%)
-
-# Program Name
 NAME = fdf
-# BONUS_NAME = BONUS
 
-# Colour
+CC = cc
+
+CFLAGS = -Wall -Wextra -Werror -g3
+
+# directory that contains source files
+FILE_DIR = srcs 
+
+# specify the directory where make should look for files
+vpath %.c $(FILE_DIR)
+
+# use shell to find all files in the specified directories
+SRC = $(shell find $(FILE_DIR) -name '*.c')
+
+INC = -I include
+
+OBJ_FOLDER = obj_files
+
+# create a list of object files
+# addprefix: add the path to the front of each file
+# notdir: remove the path from each file
+OBJ_SRC = $(addprefix $(OBJ_FOLDER)/, $(notdir $(SRC:.c=.o)))
+
+LIBFT_DIR = libft/libft.a
+
+FTPRINTF_DIR = ft_printf/ft_printf.a
+
+# color
 GREEN = \033[0;32m
-WHITE = \033[0m
+BLUE = \033[0;34m
+RESET = \033[0m
+
+MINILIBX = minilibx-linux/
+MINILIBX_LIBRARY = -L$(MINILIBX) -lmlx -Imlx_linux -lXext -lX11 -lm -lz
 
 all: $(NAME)
 
-$(NAME): $(FDF_OBJ_PATHS) $(LIBFT) $(FT_PRINTF)
-	$(CC) $(CFLAGS) -lXext -lX11 -lm -lz $(FDF_OBJ_PATHS) $(LIBFT) $(FT_PRINTF) $(MLX) -o $(NAME)
-	@echo "$(GREEN)----------COMPILED FDF DONE---------\n$(WHITE)"
+$(NAME) : $(OBJ_SRC)
+	make -C $(MINILIBX)
+	make -C libft
+	make -C ft_printf
+	$(CC) $(CFLAGS) $(OBJ_SRC) $(INC) $(LIBFT_DIR) $(FTPRINTF_DIR) $(MINILIBX_LIBRARY) -o $(NAME)
+	@echo "${GREEN}----------COMPILED DONE----------\n${RESET}"
 
-# bonus : $(BONUS_NAME)
-
-# $(BONUS_NAME) : $(BONUS_OBJ_PATHS) $(LIBFT) $(FT_PRINTF) #$(BONUS_EXTRA_OBJ_PATHS)#$(BONUS_EXTRA_OBJ_PATHS)
-# 	$(CC) $(CFLAGS) -o $(BONUS_NAME) $(BONUS_OBJ_PATHS) $(LIBFT) $(FT_PRINTF)  
-# 	@echo "$(GREEN)----------COMPILED BONUS DONE---------\n$(WHITE)"
-
-$(LIBFT):
-	@make -C $(LIBFT_DIR)
-
-$(FT_PRINTF):
-	@make -C $(FT_PRINTF_DIR)
-
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
-	$(CC) $(CFLAGS) -I minilibx_linux -O3 -c $< -o $@
-
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
+$(OBJ_FOLDER)/%.o : %.c
+	@mkdir -p $(OBJ_FOLDER)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(BUILD_DIR)/*.o
-	rm -rf $(BUILD_DIR)
-	@make -C $(LIBFT_DIR) clean
-	@make -C $(FT_PRINTF_DIR) clean
+	rm -rf $(OBJ_FOLDER)
+	make fclean -C libft
+	make fclean -C ft_printf
+	make clean -C $(MINILIBX)
+	rm -f libft.a
 
-fclean: clean
-	rm -f $(NAME) $(BONUS_NAME)
-	@make -C $(LIBFT_DIR) fclean
-	@make -C $(FT_PRINTF_DIR) fclean
-	@echo "$(GREEN)----------FULLY REMOVED----------\n$(WHITE)"
+fclean : clean
+	rm -f $(NAME)
+	@echo "${GREEN}----------FULLY REMOVE----------\n${RESET}"
 
-re: fclean all
+re : fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY : all clean fclean re

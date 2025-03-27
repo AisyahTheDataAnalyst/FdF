@@ -6,11 +6,11 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 09:42:11 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/03/27 13:11:00 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/03/27 16:04:30 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 // int	main(int ac, char **av)
 // {

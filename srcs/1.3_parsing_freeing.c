@@ -6,11 +6,11 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 13:30:12 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/03/27 12:08:43 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:08:35 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 void	freeing_split(char **split)
 {
