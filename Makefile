@@ -6,7 +6,7 @@
 #    By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/06 14:26:57 by aimokhta          #+#    #+#              #
-#    Updated: 2025/03/27 12:15:42 by aimokhta         ###   ########.fr        #
+#    Updated: 2025/03/27 13:42:58 by aimokhta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ MLX = $(MLX_DIR)/libmlx_Linux.a
 FDF_SRCS = main.c \
 			1.1_parsing.c \
 			1.2_parsing_helper.c \
-			1.3_parsing_freeing.c 
+			1.3_parsing_freeing.c \
+			mlx_functions.c
 
 FDF_OBJS = $(FDF_SRCS:.c=.o)
 FDF_OBJ_PATHS = $(FDF_OBJS:%=$(BUILD_DIR)/%)
@@ -90,6 +91,7 @@ $(BUILD_DIR):
 
 clean:
 	rm -f $(BUILD_DIR)/*.o
+	rm -rf $(BUILD_DIR)
 	@make -C $(LIBFT_DIR) clean
 	@make -C $(FT_PRINTF_DIR) clean
 
