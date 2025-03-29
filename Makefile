@@ -1,26 +1,21 @@
 NAME = fdf
 
-CC = cc
+CC = cc #-g3 -O3 -O0 -fsanitize=address -fsanitize-recover=leak
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror 
 
 # directory that contains source files
 FILE_DIR = srcs 
 
-# specify the directory where make should look for files
-vpath %.c $(FILE_DIR)
-
 # use shell to find all files in the specified directories
-SRC = $(shell find $(FILE_DIR) -name '*.c')
+SRC = $(shell find $(FILE_DIR) -type f -name '*.c')
 
 INC = -I include
 
 OBJ_FOLDER = obj_files
 
-# create a list of object files
-# addprefix: add the path to the front of each file
-# notdir: remove the path from each file
-OBJ_SRC = $(addprefix $(OBJ_FOLDER)/, $(notdir $(SRC:.c=.o)))
+# create a list of .o files in the object folder
+OBJ_SRC = $(patsubst %.c, $(OBJ_FOLDER)/%.o, $(SRC))
 
 LIBFT_DIR = libft/libft.a
 
@@ -44,7 +39,7 @@ $(NAME) : $(OBJ_SRC)
 	@echo "${GREEN}----------COMPILED DONE----------\n${RESET}"
 
 $(OBJ_FOLDER)/%.o : %.c
-	@mkdir -p $(OBJ_FOLDER)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 09:42:11 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/03/27 16:04:30 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/03/29 16:38:21 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 // 	if (ac != 2)
 // 		exit(1);
 // 	ft_bzero(&map, sizeof(t_map));
-// 	counting_row_col(av, &map);
-// 	parse_map_row(av, &map);
-// 	printf("Numbers of row: %d\n", map.row);
-// 	printf("Numbers of column: %d\n", map.column);
+// 	counting_height_width(av, &map);
+// 	parse_map_height(av, &map);
+// 	printf("Numbers of height: %d\n", map.height);
+// 	printf("Numbers of width: %d\n", map.width);
 // 	printf("Number of x for pixel[2][3]: %d\n", map.grid[2][3].x);
 // 	printf("Number of y for pixel[2][3]: %d\n", map.grid[2][3].y);
 // 	printf("Number of z for pixel[2][3]: %d\n", map.grid[2][3].z);
@@ -40,29 +40,48 @@
 // // 	- open a window, return a pointer to the window that we just created
 // // mlx_new_image
 // // 	- creating an image- buffer pixels to image the well push to the window
-// // mlx_get_data_addr 
+// // mlx_get_img_addr 
 // // 	- creating an image addr 
 // //   - after creating an image, we pass all the referenced ones 
-// //   - to be set accordingly for the current data address 
+// //   - to be set accordingly for the current img address 
 // // my_mlx_pixel_put 
 // // 	- putting 1 pixel only into the image 
-// //   - with starting x starting y and color
+// //   - with starting x starting y and widthor
 // // mlx_put_image_to_window
 // // 	- as the name stated
 // // mlx_loop
 // // 	- open windows until we cntrlD at the terminal  
 // //   - initiate window rendering
-int	main(void)
-{
-	t_data	img;
+// // mlx_hook 
+// // 	- a fn that assigns a callback to a specific window event
+// // 	- 17 = sets up hook for Destroy	Notify event (event code 17)
+// // 	- 1L<<0 = event mask (making sure hook triggers properly)
 
-	img.mlx = mlx_init();
-	img.win = mlx_new_window(img.mlx, 1920, 1080, "Welcome to aimokhta's FdF! :)");
-	img.img = mlx_new_image(img.mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-			&img.endian);
-	my_mlx_pixel_put(&img, 1920/2, 1080/2, 0x00FF0000); // just a pixel
-	mlx_put_image_to_window(img.mlx, img.win, img.img, 0, 0);
-	mlx_hook(img.win, 2, 1L<<0, close_window, &img);
-	mlx_loop(img.mlx);
+
+int	main(int ac, char **av)
+{
+	// t_img	img;
+	t_mlx	mlx;
+	t_line	line;
+	// t_map	map;
+
+	if (ac != 2)
+		exit(1);
+	// printf("here\n");
+	fdf_init(&mlx);
+	counting_height_width(av, &mlx.mapping);
+	parse_map_height(av, &mlx.mapping);
+	mlx.mlx = mlx_init();
+	mlx.win = mlx_new_window(mlx.mlx, 1920, 1080, "Welcome to aimokhta's FdF!");
+	mlx.picture.img = mlx_new_image(mlx.mlx, 1920, 1080);
+	mlx.picture.addr = mlx_get_data_addr(mlx.picture.img, &mlx.picture.bits_per_pixel, &mlx.picture.line_length,
+			&mlx.picture.endian);
+	my_mlx_pixel_put(&mlx.picture, 1920/2, 1080/2, 0x00FF0000);
+	draw_line_h(&mlx.picture, &line, &mlx.mapping, 0x00FF0000);
+	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.picture.img, 0, 0);
+	mlx_hook(mlx.win, 2, 1L << 0, close_window_esc, &mlx);
+	mlx_hook(mlx.win, 17, 1l << 0, close_window_x, &mlx);
+	mlx_loop(mlx.mlx);
+	// cleanup(&mlx);
+	return (0);
 }

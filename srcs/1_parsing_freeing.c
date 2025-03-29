@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1.3_parsing_freeing.c                              :+:      :+:    :+:   */
+/*   1_parsing_freeing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 13:30:12 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/03/27 15:08:35 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/03/27 18:52:34 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	free_map(t_map *map)
 	if (!map || !map->grid)
 		return ;
 	i = 0;
-	while (i < map->row)
+	while (i < map->height)
 	{
 		if (map->grid[i])
 			free(map->grid[i]);
@@ -41,16 +41,16 @@ void	free_map(t_map *map)
 	free (map->grid);
 }
 
-void	free_line_row_values(char *line, char **row_values)
+void	free_line_height_values(char *line, char **height_values)
 {
 	int	i;
 
 	free(line);
 	i = 0;
-	while (row_values[i])
+	while (height_values[i])
 	{
-		free(row_values[i]);
+		free(height_values[i]);
 		i++;
 	}
-	free(row_values);
+	free(height_values);
 }

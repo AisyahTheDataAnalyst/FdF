@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1.2_parsing_helper.c                               :+:      :+:    :+:   */
+/*   1_parsing_helper.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 13:28:56 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/03/27 15:08:35 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/03/28 13:22:34 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-//aisyah you can do it! 
+// aisyah you can do it! 
 // iniitialize to 0 or accurate counting from fresh start 
 // ft_bzero for accurate counting
 // need to do both
-void	counting_row_col(char **av, t_map *map)
+void	counting_height_width(char **av, t_map *map)
 {
 	int		fd;
 	char	*line;
@@ -25,16 +25,16 @@ void	counting_row_col(char **av, t_map *map)
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		return ;
-	map->column = 0;
-	map->row = 0;
+	map->width = 0;
+	map->height = 0;
 	line = get_next_line(fd);
 	if (line)
-		map->column = ft_wordcount(line, ' ');
-	//printf("[%ld]\n", map->column);
+		map->width = ft_wordcount(line, ' ');
+	//printf("[%ld]\n", map->width);
 	while (line)
 	{
 		//printf("line [%s]\n", line);
-		map->row++;
+		map->height++;
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -59,7 +59,7 @@ size_t	ft_wordcount(char const *s, char c)
 	return (count);
 }
 
-int		char_to_hex(char c)
+int	char_to_hex(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (c - '0');
@@ -76,8 +76,8 @@ int		char_to_hex(char c)
 unsigned int	ft_atoi_base_unsigned(const char *str, int str_base)
 {
 	unsigned int	res;
-	int	i;
-	int	new;
+	int				i;
+	int				new;
 
 	i = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
