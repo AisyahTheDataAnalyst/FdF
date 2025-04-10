@@ -6,7 +6,7 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 13:28:56 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/03/28 13:22:34 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/05 11:33:15 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	counting_height_width(char **av, t_map *map)
 	line = get_next_line(fd);
 	if (line)
 		map->width = ft_wordcount(line, ' ');
-	//printf("[%ld]\n", map->width);
+	printf("[%d]\n", map->width);
 	while (line)
 	{
 		//printf("line [%s]\n", line);
@@ -38,6 +38,7 @@ void	counting_height_width(char **av, t_map *map)
 		free(line);
 		line = get_next_line(fd);
 	}
+	printf("[%d]\n", map->height);
 	free(line);
 	close(fd);
 }
@@ -73,11 +74,11 @@ int	char_to_hex(char c)
 // i >= 8
 // for 6 digits RGB colours (0xRRGGBB)
 // or 8 digits for alpha transparency (0xAARRGGBB)
-unsigned int	ft_atoi_base_unsigned(const char *str, int str_base)
+int	ft_atoi_base(const char *str, int str_base)
 {
-	unsigned int	res;
-	int				i;
-	int				new;
+	int	res;
+	int	i;
+	int	new;
 
 	i = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)

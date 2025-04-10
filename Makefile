@@ -1,6 +1,6 @@
 NAME = fdf
 
-CC = cc #-g3 -O3 -O0 -fsanitize=address -fsanitize-recover=leak
+CC = cc -g3 -O3 -O0 -fsanitize=address -fsanitize-recover=leak
 
 CFLAGS = -Wall -Wextra -Werror 
 

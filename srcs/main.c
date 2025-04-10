@@ -6,7 +6,7 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 09:42:11 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/03/29 16:38:21 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:14:14 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,28 +60,63 @@
 
 int	main(int ac, char **av)
 {
-	// t_img	img;
 	t_mlx	mlx;
-	t_line	line;
-	// t_map	map;
 
+	(void)ac;
 	if (ac != 2)
 		exit(1);
-	// printf("here\n");
 	fdf_init(&mlx);
-	counting_height_width(av, &mlx.mapping);
-	parse_map_height(av, &mlx.mapping);
+	counting_height_width(av, &mlx.map);
+	parse_map_height(av, &mlx.map, &mlx.pixel);
 	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, 1920, 1080, "Welcome to aimokhta's FdF!");
-	mlx.picture.img = mlx_new_image(mlx.mlx, 1920, 1080);
-	mlx.picture.addr = mlx_get_data_addr(mlx.picture.img, &mlx.picture.bits_per_pixel, &mlx.picture.line_length,
+	mlx.win = mlx_new_window(mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
+	mlx.picture.img = mlx_new_image(mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
+	mlx.picture.addr = mlx_get_data_addr(mlx.picture.img,
+			&mlx.picture.bits_per_pixel, &mlx.picture.line_length,
 			&mlx.picture.endian);
-	my_mlx_pixel_put(&mlx.picture, 1920/2, 1080/2, 0x00FF0000);
-	draw_line_h(&mlx.picture, &line, &mlx.mapping, 0x00FF0000);
+	isometric(&mlx.map);
+	draw_line_h(&mlx.picture, &mlx.line, &mlx.map); //, &mlx.pixel);
+	draw_line_v(&mlx.picture, &mlx.line, &mlx.map); //, &mlx.pixel);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.picture.img, 0, 0);
 	mlx_hook(mlx.win, 2, 1L << 0, close_window_esc, &mlx);
 	mlx_hook(mlx.win, 17, 1l << 0, close_window_x, &mlx);
 	mlx_loop(mlx.mlx);
-	// cleanup(&mlx);
 	return (0);
 }
+
+
+// ________________________test_______________________________
+// int	main(int ac, char **av)
+// {
+// 	t_mlx	mlx;
+
+// 	fdf_init(&mlx);
+// 	mlx.mlx = mlx_init();
+// 	mlx.win = mlx_new_window(mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
+// 	mlx.picture.img = mlx_new_image(mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
+// 	mlx.picture.addr = mlx_get_data_addr(mlx.picture.img,
+// 		&mlx.picture.bits_per_pixel, &mlx.picture.line_length,
+// 		&mlx.picture.endian);
+
+// 	if (ac == 2)
+// 	{
+// 		counting_height_width(av, &mlx.map);
+// 		parse_map_height(av, &mlx.map, &mlx.pixel);
+
+// 		// isometric conversion and map drawing
+// 		// (Uncomment if you want to test the map)
+// 		// draw_line_h(&mlx.picture, &mlx.line, &mlx.map);
+// 		// draw_line_v(&mlx.picture, &mlx.line, &mlx.map);
+// 	}
+// 	else
+// 	{
+// 		// No file = test mode
+// 		test_all_octants(&mlx.line, &mlx.picture);
+// 	}
+
+// 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.picture.img, 0, 0);
+// 	mlx_hook(mlx.win, 2, 1L << 0, close_window_esc, &mlx);
+// 	mlx_hook(mlx.win, 17, 1L << 0, close_window_x, &mlx);
+// 	mlx_loop(mlx.mlx);
+// 	return (0);
+// }
