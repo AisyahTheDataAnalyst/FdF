@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_parsing_helper.c                                 :+:      :+:    :+:   */
+/*   2_parsing_helper.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 13:28:56 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/04/05 11:33:15 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:55:48 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	counting_height_width(char **av, t_map *map)
 	int		fd;
 	char	*line;
 
-	//printf("[%s]\n", av[1]);
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		return ;
@@ -30,15 +29,12 @@ void	counting_height_width(char **av, t_map *map)
 	line = get_next_line(fd);
 	if (line)
 		map->width = ft_wordcount(line, ' ');
-	printf("[%d]\n", map->width);
 	while (line)
 	{
-		//printf("line [%s]\n", line);
 		map->height++;
 		free(line);
 		line = get_next_line(fd);
 	}
-	printf("[%d]\n", map->height);
 	free(line);
 	close(fd);
 }
@@ -52,8 +48,8 @@ size_t	ft_wordcount(char const *s, char c)
 	count = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] != c && s[i] != '\n' &&
-			(s[i + 1] == c || s[i + 1] == '\0' || s[i + 1] == '\n'))
+		if (s[i] != c && s[i] != '\n'
+			&& (s[i + 1] == c || s[i + 1] == '\0' || s[i + 1] == '\n'))
 			count++;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:43:30 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/03/26 14:13:48 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:07:06 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*ft_joining(char *call, char *buffer)
 
 	temp = ft_strjoin2(call, buffer);
 	if (!temp)
-	{		
+	{
 		free (call);
 		free (buffer);
 		return (NULL);

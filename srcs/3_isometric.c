@@ -1,56 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_parsing_freeing.c                                :+:      :+:    :+:   */
+/*   3_isometric.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 13:30:12 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/03/27 18:52:34 by aimokhta         ###   ########.fr       */
+/*   Created: 2025/04/05 16:17:08 by aimokhta          #+#    #+#             */
+/*   Updated: 2025/04/10 17:41:53 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	freeing_split(char **split)
+static void	isometric_projection(t_pixel *p)
 {
-	int	i;
+	float	x;
+	float	y;
+	float	z;
 
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
+	x = p->ori_x * ISO_SCALE;
+	y = p->ori_y * ISO_SCALE;
+	z = p->ori_z * Z_SCALE;
+	p->x = (int)((x - y) * cos(ISO_ANGLE));
+	p->y = (int)(((x + y) * sin(ISO_ANGLE) / COMPRESSION - z));
+	p->x += WIN_WIDTH / 2;
+	p->y += WIN_HEIGHT / 4;
 }
 
-void	free_map(t_map *map)
+void	isometric(t_map *map)
 {
 	int	i;
+	int	j;
 
-	if (!map || !map->grid)
-		return ;
 	i = 0;
 	while (i < map->height)
 	{
-		if (map->grid[i])
-			free(map->grid[i]);
+		j = 0;
+		while (j < map->width)
+		{
+			isometric_projection(&map->grid[i][j]);
+			j++;
+		}
 		i++;
 	}
-	free (map->grid);
-}
-
-void	free_line_height_values(char *line, char **height_values)
-{
-	int	i;
-
-	free(line);
-	i = 0;
-	while (height_values[i])
-	{
-		free(height_values[i]);
-		i++;
-	}
-	free(height_values);
 }

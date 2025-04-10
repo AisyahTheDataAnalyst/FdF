@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/04/10 13:45:31 by aimokhta          #+#    #+#              #
+#    Updated: 2025/04/10 17:37:12 by aimokhta         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = fdf
 
 CC = cc -g3 -O3 -O0 -fsanitize=address -fsanitize-recover=leak
@@ -55,4 +67,17 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re
+norm : 
+	@# @bash norm.sh
+	@echo "${BLUE}----------NORMINETTE TIME!----------\n${RESET}"	
+	@echo "${GREEN}----------srcs----------${RESET}"
+	@norminette srcs
+	@echo "${GREEN}\n----------include----------${RESET}"
+	@norminette include
+	@echo "${GREEN}\n----------libft----------${RESET}"
+	@norminette libft
+	@echo "${GREEN}\n----------ft_printf----------${RESET}"
+	@norminette ft_printf
+	@echo "${GREEN}\n       ALL CLEAR!✅✅✅\n${RESET}"
+
+.PHONY : all clean fclean re norm

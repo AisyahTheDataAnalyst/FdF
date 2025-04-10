@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_parsing.c                                        :+:      :+:    :+:   */
+/*   2_parsing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:46:58 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/04/09 20:56:52 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:42:51 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void parse_map_height(char **av, t_map *map, t_pixel *pixel)
+void	parse_map_height(char **av, t_map *map, t_pixel *pixel)
 {
 	int		fd;
 	int		i;
@@ -24,11 +24,7 @@ void parse_map_height(char **av, t_map *map, t_pixel *pixel)
 		exit(1);
 	map->grid = malloc(map->height * sizeof(t_pixel *));
 	if (!(map->grid))
-	{
-		printf("Failed to allocate grid memory!\n");
 		exit(1);
-	}
-	printf("i passed parse_map_height\n");
 	i = 0;
 	line = get_next_line(fd);
 	while (line && i < map->height)
@@ -39,7 +35,6 @@ void parse_map_height(char **av, t_map *map, t_pixel *pixel)
 		line = get_next_line(fd);
 		i++;
 	}
-	printf("i passed all other parses\n");
 	free(line);
 	close(fd);
 }
@@ -77,16 +72,15 @@ void	parse_width(t_map *map, int i, char **height_values, t_pixel *pixel)
 
 void	parse_colour_z_normal(t_pixel *pixel, char **height_values, int j)
 {
-	pixel->colour = 0xFFFF00;
+	pixel->colour = DEFAULT_COLOUR;
 	pixel->z = ft_atoi(height_values[j]);
 	pixel->ori_z = pixel->z;
-    printf("Parsed point at normal (%d,%d) - Z = %d\n", pixel->ori_x, pixel->ori_y, pixel->z);
 }
 
 void	parse_x_y(t_map *map, t_pixel *pixel, int i, int j)
 {
-	pixel->x = j; // * 5 + 10;
-	pixel->y = i; //* 5 + 10;
+	pixel->x = j;
+	pixel->y = i;
 	pixel->ori_x = j;
 	pixel->ori_y = i;
 	map->grid[i][j] = *pixel;
@@ -99,10 +93,7 @@ void	parse_colour_z_unique(char **split, t_pixel *pixel)
 	pixel->z = ft_atoi(split[0]);
 	pixel->ori_z = pixel->z;
 	colour = (split[1]);
-    printf("Parsed point at unique (%d,%d) - Z = %d\n", pixel->ori_x, pixel->ori_y, pixel->z);
 	if (colour[0] == '0' && (colour[1] == 'x' || colour[1] == 'X'))
 		colour += 2;
 	pixel->colour = ft_atoi_base(colour, 16);
-	printf("raw colour string %d\n", pixel->colour);
-	// printf("parsed colour: %u\n", pixel->colour);
 }
