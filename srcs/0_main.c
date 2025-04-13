@@ -6,7 +6,7 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 09:42:11 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/04/10 15:13:46 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:46:35 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	main(int ac, char **av)
 {
 	t_mlx	mlx;
 
-	(void)ac;
 	if (ac != 2)
 		exit(1);
 	fdf_init(&mlx);

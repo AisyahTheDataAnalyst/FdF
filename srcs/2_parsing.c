@@ -6,7 +6,7 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:46:58 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/04/10 14:42:51 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/13 12:33:29 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,15 @@ void	parse_map_height(char **av, t_map *map, t_pixel *pixel)
 	close(fd);
 }
 
-// use height_values[j] instead of height_values[i][j] 
-// coz height_values itself is already the [i].
-// colour  += 2; ==same== colour = &colour[2]; 
-// - moving 2 points forward
 void	parse_width(t_map *map, int i, char **height_values, t_pixel *pixel)
 {
 	int		j;
 	char	**split;
 
-	j = 0;
 	map->grid[i] = malloc(map->width * sizeof(t_pixel));
 	if (!(map->grid[i]))
 		return ;
+	j = 0;
 	while (j < map->width && height_values[j])
 	{
 		if (ft_strchr(height_values[j], ','))
@@ -59,8 +55,6 @@ void	parse_width(t_map *map, int i, char **height_values, t_pixel *pixel)
 			split = ft_split(height_values[j], ',');
 			if (split && split[0] && split[1])
 				parse_colour_z_unique(split, pixel);
-			else
-				parse_colour_z_normal(pixel, height_values, j);
 			freeing_split(split);
 		}
 		else
@@ -77,6 +71,7 @@ void	parse_colour_z_normal(t_pixel *pixel, char **height_values, int j)
 	pixel->ori_z = pixel->z;
 }
 
+// one pointer to update the value of the pointer
 void	parse_x_y(t_map *map, t_pixel *pixel, int i, int j)
 {
 	pixel->x = j;
@@ -86,6 +81,10 @@ void	parse_x_y(t_map *map, t_pixel *pixel, int i, int j)
 	map->grid[i][j] = *pixel;
 }
 
+// use height_values[j] instead of height_values[i][j] 
+// coz height_values itself is already the [i].
+// colour  += 2; ==same== colour = &colour[2]; 
+// - moving 2 points forward
 void	parse_colour_z_unique(char **split, t_pixel *pixel)
 {
 	char	*colour;

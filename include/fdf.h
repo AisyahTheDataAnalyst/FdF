@@ -6,7 +6,7 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:07:41 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/04/10 17:41:09 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:43:35 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,17 @@
 # define WIN_WIDTH 3800 	//1920 //3840
 # define WIN_HEIGHT 2000 	//1080 //2160
 # define ISO_ANGLE 0.523599	// = 30°
-# define ISO_SCALE 10		// adjust to control the zoom level
-# define Z_SCALE 10			// adjust for z height amplifier
+# define ISO_SCALE 25		// adjust to control the zoom level
+# define Z_SCALE 25			// adjust for z height amplifier
 # define COMPRESSION 1		// adjust the compression of the map
 # define DEFAULT_COLOUR 0xFFFFFF	// white
 
-// # include <mlx.h>
-// # include <mlx_int.h>
-// # include "libft.h"
-// # include "ft_printf.h"
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
 # include "../ft_printf/ft_printf.h"
 # include <fcntl.h>			// open
 # include <unistd.h>		// close
-# include <stdlib.h>		//abs
+# include <stdlib.h>		// abs
 # include <math.h>			// sin, cos
 
 typedef struct s_pixel

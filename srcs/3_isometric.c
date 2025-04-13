@@ -6,7 +6,7 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 16:17:08 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/04/10 17:41:53 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/12 12:12:21 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	isometric_projection(t_pixel *p)
 	p->x = (int)((x - y) * cos(ISO_ANGLE));
 	p->y = (int)(((x + y) * sin(ISO_ANGLE) / COMPRESSION - z));
 	p->x += WIN_WIDTH / 2;
-	p->y += WIN_HEIGHT / 4;
+	p->y += WIN_HEIGHT / 2;
 }
 
 void	isometric(t_map *map)

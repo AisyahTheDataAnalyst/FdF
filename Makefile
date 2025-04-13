@@ -6,13 +6,13 @@
 #    By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/10 13:45:31 by aimokhta          #+#    #+#              #
-#    Updated: 2025/04/10 17:37:12 by aimokhta         ###   ########.fr        #
+#    Updated: 2025/04/12 16:37:01 by aimokhta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-CC = cc -g3 -O3 -O0 -fsanitize=address -fsanitize-recover=leak
+CC = cc #-g3 -O3 -O0 -fsanitize=address -fsanitize-recover=leak
 
 CFLAGS = -Wall -Wextra -Werror 
 
@@ -26,6 +26,7 @@ INC = -I include
 
 OBJ_FOLDER = obj_files
 
+# patsubst : pattern substitution function
 # create a list of .o files in the object folder
 OBJ_SRC = $(patsubst %.c, $(OBJ_FOLDER)/%.o, $(SRC))
 
@@ -68,7 +69,6 @@ fclean : clean
 re : fclean all
 
 norm : 
-	@# @bash norm.sh
 	@echo "${BLUE}----------NORMINETTE TIME!----------\n${RESET}"	
 	@echo "${GREEN}----------srcs----------${RESET}"
 	@norminette srcs
