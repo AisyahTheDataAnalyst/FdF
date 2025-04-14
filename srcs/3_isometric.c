@@ -6,11 +6,11 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 16:17:08 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/04/12 12:12:21 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:07:29 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
 static void	isometric_projection(t_pixel *p)
 {

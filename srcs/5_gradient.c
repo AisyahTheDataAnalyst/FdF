@@ -6,11 +6,11 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 19:27:45 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/04/10 16:30:49 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:08:34 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
 static float	fraction(int s, int e, int curr)
 {

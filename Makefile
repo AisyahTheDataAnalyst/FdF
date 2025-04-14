@@ -6,7 +6,7 @@
 #    By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/10 13:45:31 by aimokhta          #+#    #+#              #
-#    Updated: 2025/04/12 16:37:01 by aimokhta         ###   ########.fr        #
+#    Updated: 2025/04/14 16:18:51 by aimokhta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ FILE_DIR = srcs
 # use shell to find all files in the specified directories
 SRC = $(shell find $(FILE_DIR) -type f -name '*.c')
 
-INC = -I include
+INC = -I include -I libft -I ft_printf -I minilibx-linux
+# this is what is caused to not write explicit path for all #includes in all header and c files
+# -I means it will search the header in that directory that is mentioned in the each file's #include
 
 OBJ_FOLDER = obj_files
 
@@ -37,7 +39,7 @@ FTPRINTF_DIR = ft_printf/ft_printf.a
 # color
 GREEN = \033[0;32m
 BLUE = \033[0;34m
-RESET = \033[0m
+RESET = \033[0m  #white
 
 MINILIBX = minilibx-linux/
 MINILIBX_LIBRARY = -L$(MINILIBX) -lmlx -Imlx_linux -lXext -lX11 -lm -lz
@@ -53,7 +55,8 @@ $(NAME) : $(OBJ_SRC)
 
 $(OBJ_FOLDER)/%.o : %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+# add $(INC) to not do explicite path to all #include of all header and c files
 
 clean:
 	rm -rf $(OBJ_FOLDER)

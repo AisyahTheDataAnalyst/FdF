@@ -6,7 +6,7 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:07:41 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/04/12 16:43:35 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:05:37 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 # define COMPRESSION 1		// adjust the compression of the map
 # define DEFAULT_COLOUR 0xFFFFFF	// white
 
-# include "../minilibx-linux/mlx.h"
-# include "../libft/libft.h"
-# include "../ft_printf/ft_printf.h"
+# include "mlx.h"
+# include "libft.h"
+# include "ft_printf.h"
 # include <fcntl.h>			// open
 # include <unistd.h>		// close
 # include <stdlib.h>		// abs

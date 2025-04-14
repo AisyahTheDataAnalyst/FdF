@@ -6,11 +6,11 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 13:28:56 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/04/12 11:40:50 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:07:18 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
 // aisyah you can do it! 
 // iniitialize to 0 or accurate counting from fresh start 

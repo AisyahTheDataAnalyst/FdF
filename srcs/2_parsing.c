@@ -6,11 +6,11 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:46:58 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/04/13 12:33:29 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:07:23 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
 void	parse_map_height(char **av, t_map *map, t_pixel *pixel)
 {

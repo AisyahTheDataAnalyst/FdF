@@ -6,11 +6,11 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:21:13 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/04/10 15:58:43 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:08:24 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
 void	draw_line_v(t_img *img, t_line *line, t_map *map)
 {

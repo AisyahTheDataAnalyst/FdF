@@ -6,11 +6,11 @@
 /*   By: aimokhta <aimokhta@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 09:42:11 by aimokhta          #+#    #+#             */
-/*   Updated: 2025/04/12 16:46:35 by aimokhta         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:06:58 by aimokhta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
 // // purpose : 
 // // mlx_init
